@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .container {
+
+      background-color: #f8f9fa;
+    }
+
+    button {
+      display: flex;
+      justify-content: right;
+      align-items: center;
+      margin-top: 5%;
+      width: 1000px;
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+  <div class="card mt-5">
+    <h2>Calculator</h2>
+    <div class="container text-center">
+      <form id="calculatorForm">
+        <div class="row">
+          <div class="col">
+            <label for="num1">Number 1</label>
+            <input type="number" class="form-control" id="num1" required>
+          </div>
+          <div class="col">
+            <label for="operator">Operator</label>
+            <select class="form-control" id="operator">
+              <option value="+">+</option>
+              <option value="-">-</option>
+              <option value="*">*</option>
+              <option value="/">/</option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="num2">Number 2</label>
+            <input type="number" class="form-control" id="num2" required>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Calculate</button>
+      </form>
+      <div class="mt-3">
+        <label for="result">Result</label>
+        <input type="text" class="form-control" id="result" readonly>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById('calculatorForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+// initialising input
+        var num1 = parseFloat(document.getElementById('num1').value);
+        var num2 = parseFloat(document.getElementById('num2').value);
+        var operator = document.getElementById('operator').value;
+
+// opeartion
+        var result;
+        switch (operator) {
+          case '+':
+            result = num1 + num2;
+            break;
+          case '-':
+            result = num1 - num2;
+            break;
+          case '*':
+            result = num1 * num2;
+            break;
+          case '/':
+            result = num1 / num2;
+            break;
+          default:
+            result = "Invalid Operator";
+        }
+// diplay result
+        document.getElementById('result').value = result;
+      });
+
+      document.querySelectorAll('input[type="number"], select').forEach(function (input) {
+        input.addEventListener('change', function () {
+          document.getElementById('result').value = "";
+        });
+      });
+    </script>
+</body>
+</html>
